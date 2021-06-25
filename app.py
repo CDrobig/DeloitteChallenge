@@ -2,7 +2,6 @@ from flask import Flask, request
 import pandas as pd
 import os
 from werkzeug.utils import secure_filename
-
 from biasChecker import checkData
 
 app = Flask(__name__)
@@ -31,8 +30,8 @@ def file_uploader():
         filename = secure_filename(f.filename)
         f.save(os.path.join("./", filename))
 
-        df = pd.read_csv(filename, delimiter="|", encoding="utf-8")
-
+        df = pd.read_csv(filename, delimiter=",", encoding="utf-8")
+        #unbalancedColumns(df)
         checkData(df)
 
         return 'file uploaded successfully'
