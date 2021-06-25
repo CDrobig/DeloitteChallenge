@@ -7,6 +7,7 @@ import pandas as pd
 def checkData(data):
     score = 0
     data = data.drop(["Unnamed: 0"], axis=1)
+    #todo: handle 2 string solumns
 
     #calculate deviation of feature importance in order to get balanced features
     featureImportanceScore=0
@@ -102,9 +103,20 @@ def checkData(data):
 
     print("Bias driving columns are checkt with score: " + str(biasDriverScore))
 
+    #check for extremly high correlation for the outcome variables
+    correlationScore =0
+    for column in columnNames:
+        correlation = data["default"].corr(data[column])
+        print(column + " corrlates with default by a p-value of " + str(correlation))
+        if correlation >= 0.9 or correlation <= -0.9 :
+            correlationScore += 10
+            print("There is a significant correlation between " + str(column) + ' and default which might cause a bias')
+            #todo: correct student T-Test
+    print("Balance of binary variables checkt with score: " + str(correlationScore))
 
-
-    print("data checked!")
+    #todo: sum possible score
+    score = featureImportanceScore + unbalancedScore + biasDriverScore + correlationScore
+    print("Data checked, Bias Score is at: " + str(score))
 
     return score
 
