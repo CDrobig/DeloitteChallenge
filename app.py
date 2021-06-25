@@ -15,7 +15,7 @@ def hello_world():
 def upload_file():
     return """<html>
    <body>
-      <form action = "http://localhost:5000/uploader" method = "POST"
+      <form action = "https://biaschecker.herokuapp.com/uploader" method = "POST"
          enctype = "multipart/form-data">
          <input type = "file" name = "file" />
          <input type = "submit"/>
@@ -39,7 +39,7 @@ def file_uploader():
 def upload_CVfile():
     return """<html>
    <body>
-      <form action = "http://localhost:5000/CVuploader" method = "POST"
+      <form action = "https://biaschecker.herokuapp.com/CVuploader" method = "POST"
          enctype = "multipart/form-data">
          <input type = "file" name = "file" />
          <input type = "submit"/>
