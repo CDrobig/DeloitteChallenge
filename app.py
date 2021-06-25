@@ -1,4 +1,4 @@
-from flask import Flask, request, current_app, send_from_directory, send_file
+from flask import Flask, request, send_file
 import pandas as pd
 import os
 from werkzeug.utils import secure_filename
@@ -28,7 +28,7 @@ def file_uploader():
     if request.method == 'POST':
         f = request.files['file']
         filename = secure_filename(f.filename)
-        f.save(os.path.join("./", filename))
+        f.save(os.path.join("/", filename))
 
         df = pd.read_csv(filename, delimiter=",", encoding="utf-8")
         checkData(df)
@@ -52,14 +52,9 @@ def CVfile_uploader():
     if request.method == 'POST':
         f = request.files['file']
         filename = secure_filename(f.filename)
-        f.save(os.path.join("./exampleCV/original/", filename))
+        f.save(os.path.join("exampleCV/original/", filename))
         file = filename.split(".")[0]
         #uploads = os.path.join(current_app.root_path, app.config['./exampleCV/unbiased'])
         path = "./exampleCV/unbiased/"+file+"_unbiased.jpeg"
         return send_file(path, as_attachment=True)
 
-
-
-
-if __name__ == '__main__':
-    app.run()
