@@ -90,14 +90,19 @@ def augmentation():
 
 @app.route('/twin')
 def twin():
+    return render_template('twin.html')
+
+@app.route('/downloadCV')
+def downloadCV():
     #f = request.files['file']
     #filename = secure_filename(f.filename)
     #f.save(os.path.join("exampleCV/original/", filename))
     #file = filename.split(".")[0]
     # uploads = os.path.join(current_app.root_path, app.config['./exampleCV/unbiased'])
+    #todo: implement anonymisation and create file
     path = "./exampleCV/unbiased/exampleCV_unbiased.jpg"
     send_file(path, as_attachment=True)
-    return render_template('twin.html')
+    return send_file(path, as_attachment=True)
 
 #read in CSV for data augmentation via GAN
 @app.route('/augmentData')
