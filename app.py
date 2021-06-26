@@ -36,19 +36,7 @@ def CVfile_uploader():
         path = "./exampleCV/unbiased/exampleCV_unbiased.jpg"
         return send_file(path, as_attachment=True)
 
-#use GAN for data augmentation of unbalanced data
-@app.route('/gan', methods=['GET', 'POST'])
-def gan():
-    if request.method == 'POST':
-        f = request.files['file']
-        filename = secure_filename(f.filename)
-        f.save(os.path.join("/", filename))
 
-        inputData = pd.read_csv(filename, delimiter=",", encoding="utf-8")
-
-        generatedData = generateData(inputData)
-
-        return send_file(generatedData, as_attachment=True)
 
 #check document if it contais skillSet words and calculate a score based on word similarity
 @app.route('/skillSet/<a>/<b>/<c>')
@@ -72,7 +60,7 @@ def createcm(a=None, b=None, c=None, d=None, e=None):
 #read in CSV file to scan for bias
 @app.route('/upload')
 def upload_file():
-    filename="unbalanced_data_sex.csv"
+    filename="./exampleData/biased/unbalanced_data_sex.csv"
     if request.method == 'POST':
         f = request.files['file']
         filename = secure_filename(f.filename)
@@ -88,9 +76,25 @@ def upload_file():
 def augmentation():
     return render_template('augmentation.html')
 
+#use GAN for data augmentation of unbalanced data
+@app.route('/gan')
+def gan():
+    #if request.method == 'POST':
+        #f = request.files['file']
+        #filename = secure_filename(f.filename)
+        #f.save(os.path.join("/", filename))
+        #inputData = pd.read_csv(filename, delimiter=",", encoding="utf-8")
+        #generatedData = generateData(inputData)
+        #generatedData = df = pd.read_csv("unbalanced_data_sex_augmented.csv", delimiter=",", encoding="utf-8")
+    return send_file("./exampleData/unbiased/unbalanced_data_sex_augmented.csv", mimetype="text/csv", attachment_filename="unbalanced_data_sex_augmented.csv", as_attachment=True)
+
 @app.route('/twin')
 def twin():
     return render_template('twin.html')
+
+@app.route('/bias')
+def bias():
+    return render_template('bias.html')
 
 @app.route('/downloadCV')
 def downloadCV():

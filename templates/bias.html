@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<div class="header">
+
+    <img class="header-image" src="{{url_for('static', filename='unbiased.jpeg')}}"  />
+
+    <a class="active" href="/"><h3><b>Home</b></h3></a>
+    <a href="/upload"><h3><b>BiasCheck</b></h3></a>
+    <a href="/augmentation"><h3><b>Data Augmentation</b></h3></a>
+    <a href="/twin"><h3><b>Application Twin</b></h3></a>
+    
+    
+ </div>
+</head>
+
+<body background="/static/backgroundUpload.jpeg">
+    <div class="body">
+        Your dataset was sucessfully checked
+        BiasScore: 145
+
+        We advise you to augment you dataset and remove the column "sex" and "minority"
+
+        Report:
+
+        Feature Importance is significantly unbalanced
+
+        Column: minority is significantly unbalanced
+
+        Column: sex is significantly unbalanced
+
+        Column: job_stability is significantly unbalanced
+
+        Column: rent  is significantly unbalanced
+
+        The column sex might be a bias-driving feature
+
+        The column age might be a bias-driving feature
+
+        Bias driving columns are checkt with score: 75
+
+        There is a significant correlation between job_stability and default which might cause a bias
+
+
+
+        <div class="footer">
+            <p></p>
+        </div>    
+
+    </div>
+ </body>
+
+
+ <style type="text/css">
+    .header {
+    overflow: hidden;
+    padding: 20px 10px; 
+    background: #000000;
+    color: #75787B;
+    font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .header-image {
+        height: 9%;
+        width: 15%;
+        padding: 12px;
+    }
+
+    .header a {
+    float: right;
+    color: #75787B;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .header a:hover {
+    
+    color: #86BC25;
+    }
+
+    input[type="file"] {
+    display: none;
+    }
+
+
+    .custom-file-upload {
+    
+    background-color: #86BC25;
+    display: inline-block;
+    padding: 25px 50px;
+    cursor: pointer;
+    border-radius: 5%;
+    margin-top: 3cm;
+    margin-left: 3cm;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #75787B;
+        color:white;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+ 
+ </style>
