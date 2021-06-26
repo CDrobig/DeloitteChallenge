@@ -3,6 +3,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 import numpy as np
 import pandas as pd
+import torch
+import biasGAN
 
 def checkData(data):
     score = 0
@@ -120,7 +122,19 @@ def checkData(data):
 
     return score
 
+def generateData(data):
+    #generator=biasGAN.DenseGenerator
+    generator = torch.load("/models/unbiased_gen_2506")
+    generator.eval()
 
+    #discriminator = biasGAN.DenseDiscriminator
+    discriminator = torch.load("/models/unbiased_disc_2506")
+    discriminator.eval()
+    # todo: generate data
+
+    data = "./exampleData/unbiased/balancedData.csv"
+
+    return data
 
 
 
