@@ -133,15 +133,3 @@ def generateData(data):
     # todo: generate data and put dataset together
 
     return data
-
-
-def replaceCategoricals(data):
-
-    data = data.replace(to_replace="MT04PA", value=0)
-    data = data.replace(to_replace="MT15PA", value=1)
-    data = data.replace(to_replace="MT01RA", value=2)
-    data = data.replace(to_replace="MT12RA", value=3)
-
-    data = data.replace(to_replace="MZ10CD", value=0)
-    data = data.replace(to_replace="MZ11CD", value=1)
-    data = data.replace(to_replace="MZ01CD", value=2)
