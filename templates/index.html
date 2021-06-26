@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<div class="header">
+
+    <img class="header-image" src="{{url_for('static', filename='unbiased.jpeg')}}"  />
+
+    <a class="active" href="/"><h3><b>Home</b></h3></a>
+    <a href="/upload"><h3><b>BiasCheck</b></h3></a>
+    <a href="/augmentation"><h3><b>Data Augmentation</b></h3></a>
+    <a href="/twin"><h3><b>Application Twin</b></h3></a>
+
+ </div>
+</head>
+<body>
+
+    <div class="bodyimg">
+        <img class="body-image" src="{{url_for('static', filename='home.jpeg')}}"  />
+    </div>
+
+    <div class="footer">
+        <p></p>
+    </div>
+
+</body>
+
+
+
+ <style type="text/css">
+    .header {
+    overflow: hidden;
+    padding: 20px 10px; 
+    background: #000000;
+    color: #75787B;
+    font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .header-image {
+        height: 9%;
+        width: 15%;
+        padding: 12px;
+    }
+
+    .bodyimg {
+    display: flex;
+    justify-content: center;
+    }
+
+    .body-image{
+        width: 700px;
+        
+    }
+
+    
+
+
+    .header a {
+    float: right;
+    color: #75787B;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .header a:hover {
+    
+    color: #86BC25;
+    }
+
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #75787B;
+        color:white;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+ 
+ </style>
