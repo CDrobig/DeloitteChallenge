@@ -1,4 +1,4 @@
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, render_template
 import pandas as pd
 import os
 from werkzeug.utils import secure_filename
@@ -9,7 +9,7 @@ app = Flask(__name__)
  #test application
 @app.route('/')
 def hello_world():
-    return 'Welcome Deloitte Unbiased.'
+    return render_template('index.html')
 
 #calculate Bias Score
 @app.route('/uploader', methods=['GET', 'POST'])
@@ -72,15 +72,17 @@ def createcm(a=None, b=None, c=None, d=None, e=None):
 #read in CSV file to scan for bias
 @app.route('/upload')
 def upload_file():
-    return """<html>
-   <body>
-      <form action = "http://127.0.0.1:5000/uploader" method = "POST"
-         enctype = "multipart/form-data">
-         <input type = "file" name = "file" />
-         <input type = "submit"/>
-      </form>
-   </body>
-</html>"""
+    filename="unbalanced_data_sex.csv"
+    if request.method == 'POST':
+        f = request.files['file']
+        filename = secure_filename(f.filename)
+        f.save(os.path.join(+filename))
+
+    df = pd.read_csv(filename, delimiter=",", encoding="utf-8")
+    score = checkData(df)
+
+    return render_template('upload.html')
+
 
 #read in CSV for data augmentation via GAN
 @app.route('/augmentData')
@@ -120,10 +122,6 @@ def skillSet():
       </form>
    </body>
 </html>"""
-
-
-
-
 
 if __name__ == '__main__':
     app.run()
