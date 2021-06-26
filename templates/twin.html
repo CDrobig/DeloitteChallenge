@@ -10,25 +10,32 @@
     <a href="/upload"><h3><b>BiasCheck</b></h3></a>
     <a href="/augmentation"><h3><b>Data Augmentation</b></h3></a>
     <a href="/twin"><h3><b>Application Twin</b></h3></a>
-    
-    
+
+
  </div>
 </head>
 
 <body background="/static/backgroundUpload.jpeg">
-    <div class="body">
+    <div class="body-grey">
         <form action = "http://127.0.0.1:5000/downloadCV"
             enctype = "multipart/form-data">
             <label for="file-upload" class="custom-file-upload">
-                Custom Upload
+                <p>Click here to upload file </p>
             </label>
             <input id="file-upload" type="file"/>
-            <input type = "submit"/>
+            <button class="submit-button" type = "submit">Create CV</button>
         </form>
+
+        <div class="report">
+            <p style="font-weight: bold; font-size: 25px; color:#86BC25;">Application Twin</p>
+
+            <p>Upload a CV and we will anonymize it for you and create a twin CV of the opposite gender to challenge your human bias.</p>
+            <p>Please note that we use synthetic images and remove all personal information of the applicant.</p>
+        </div>
 
         <div class="footer">
             <p></p>
-        </div>    
+        </div>
 
     </div>
  </body>
@@ -37,7 +44,7 @@
  <style type="text/css">
     .header {
     overflow: hidden;
-    padding: 20px 10px; 
+    padding: 20px 10px;
     background: #000000;
     color: #75787B;
     font-family: Arial, Helvetica, sans-serif;
@@ -62,7 +69,7 @@
     }
 
     .header a:hover {
-    
+
     color: #86BC25;
     }
 
@@ -70,18 +77,70 @@
     display: none;
     }
 
+    .submit-button {
+        background-color: #86BC25;
+
+
+        display: block;
+        height: 10%;
+        width: 60%;
+        margin-left: 20%;
+        margin-top: 5%;
+        justify-content: flex-start;
+        font-family: Arial, Helvetica, sans-serif;
+        border-radius: 4px;
+
+    }
+
+    body {
+        height: 500px;
+        justify-content: center;
+    }
 
     .custom-file-upload {
-    
-    background-color: #86BC25;
+
+    background-color: white;
     display: inline-block;
-    padding: 25px 50px;
-    cursor: pointer;
-    border-radius: 5%;
-    margin-top: 3cm;
-    margin-left: 3cm;
+    height: 60%;
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 20%;
+    justify-content: center;
     font-family: Arial, Helvetica, sans-serif;
+    border-radius: 4px;
+    text-align: center;
+
+
+
+
 }
+
+.report {
+    float: right;
+    color: #ffffff;
+    text-align: left;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: normal;
+    border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-right: 10px;
+    }
+
+    .body-grey {
+        display: flex;
+        justify-content: flex-end;
+        background-color: #75787B;
+        background: rgba(117,120,123,.7);
+        margin-bottom: 10%;
+        margin-top: 15%;
+        margin-left: 13%;
+        margin-right: 13%;
+        height: 40%;
+        border-radius: 4px;
+
+    }
 
 
     .footer {

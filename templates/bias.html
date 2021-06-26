@@ -17,32 +17,35 @@
 
 <body background="/static/backgroundUpload.jpeg">
     <div class="body">
-        Your dataset was sucessfully checked
-        BiasScore: 145
+        <div class="report">
+            <p style="font-weight: bold; font-size: 25px;"> Your dataset was sucessfully checked </p>
 
-        We advise you to augment you dataset and remove the column "sex" and "minority"
+            <p style="font-weight: bold; font-size: 25px; color:#86BC25;" >BiasScore: 145 </p>
 
-        Report:
+            <p style="font-weight: bold; font-size: 20px;">We advise you to augment your dataset and</p>
+            <p style="font-weight: bold; font-size: 20px;">remove the columns "sex" and "minority" </p>
+            <p>  </p>
+            <p style="font-weight: bold;">Report: </p>
 
-        Feature Importance is significantly unbalanced
+            <p>Feature Importance is significantly unbalanced </p>
 
-        Column: minority is significantly unbalanced
+            <p>Column: minority is significantly unbalanced </p>
 
-        Column: sex is significantly unbalanced
+            <p>Column: sex is significantly unbalanced </p>
 
-        Column: job_stability is significantly unbalanced
+            <p>Column: job_stability is significantly unbalanced</p>
 
-        Column: rent  is significantly unbalanced
+            <p>Column: rent  is significantly unbalanced</p>
 
-        The column sex might be a bias-driving feature
+            <p>The column sex might be a bias-driving feature</p>
 
-        The column age might be a bias-driving feature
+            <p>The column age might be a bias-driving feature</p>
 
-        Bias driving columns are checkt with score: 75
+            <p>Bias driving columns are checkt with score: 75</p>
 
-        There is a significant correlation between job_stability and default which might cause a bias
+            <p>There is a significant correlation between job_stability and default which might cause a bias</p>
 
-
+        </div>
 
         <div class="footer">
             <p></p>
@@ -76,6 +79,15 @@
     font-size: 18px;
     line-height: 25px;
     border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    }
+    .report {
+    color: #ffffff;
+    text-align: left;
+    padding: 35px;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 20px;
     font-family: Arial, Helvetica, sans-serif;
     }
 
