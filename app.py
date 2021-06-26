@@ -84,6 +84,21 @@ def upload_file():
     return render_template('upload.html')
 
 
+@app.route('/augmentation')
+def augmentation():
+    return render_template('augmentation.html')
+
+@app.route('/twin')
+def twin():
+    #f = request.files['file']
+    #filename = secure_filename(f.filename)
+    #f.save(os.path.join("exampleCV/original/", filename))
+    #file = filename.split(".")[0]
+    # uploads = os.path.join(current_app.root_path, app.config['./exampleCV/unbiased'])
+    path = "./exampleCV/unbiased/exampleCV_unbiased.jpg"
+    send_file(path, as_attachment=True)
+    return render_template('twin.html')
+
 #read in CSV for data augmentation via GAN
 @app.route('/augmentData')
 def augment_data():
