@@ -130,12 +130,9 @@ def generateData(data):
     #discriminator = biasGAN.DenseDiscriminator
     discriminator = torch.load("/models/unbiased_disc_2506")
     discriminator.eval()
-    # todo: generate data
-
-    data = "./exampleData/unbiased/balancedData.csv"
+    # todo: generate data and put dataset together
 
     return data
-
 
 
 def replaceCategoricals(data):

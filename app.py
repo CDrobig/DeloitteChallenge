@@ -3,6 +3,7 @@ import pandas as pd
 import os
 from werkzeug.utils import secure_filename
 from biasChecker import checkData, generateData
+import json
 
 app = Flask(__name__)
 
@@ -27,9 +28,9 @@ def file_uploader():
     if request.method == 'POST':
         f = request.files['file']
         filename = secure_filename(f.filename)
-        f.save(os.path.join("/", filename))
+        f.save(os.path.join(+filename))
 
-        df = pd.read_csv(filename, delimiter=",", encoding="utf-8")
+        df = pd.read_csv(+filename, delimiter=",", encoding="utf-8")
         checkData(df)
 
         return 'file uploaded successfully'
@@ -54,7 +55,7 @@ def CVfile_uploader():
         f.save(os.path.join("exampleCV/original/", filename))
         file = filename.split(".")[0]
         #uploads = os.path.join(current_app.root_path, app.config['./exampleCV/unbiased'])
-        path = "./exampleCV/unbiased/"+file+"_unbiased.jpeg"
+        path = "./exampleCV/unbiased/exampleCV_unbiased.jpg"
         return send_file(path, as_attachment=True)
 
 @app.route('/augmentData')
@@ -82,5 +83,38 @@ def gan():
 
         return send_file(generatedData, as_attachment=True)
 
+
+
+@app.route('/getSkillSetScore')
+def skillSet():
+    return """<html>
+   <body>
+      <form action = "http://127.0.0.1:5000/skillSet" method = "POST"
+         enctype = "multipart/form-data">
+         <input type = "file" name = "file" />
+         <input type = "submit"/>
+      </form>
+   </body>
+</html>"""
+
+
+@app.route('/skillSet/<a>/<b>/<c>')
+def createcm(a=None, b=None, c=None, d=None, e=None):
+    wordList = [a, b, c]
+    score = 0
+    #todo: introduce word similarity
+    f = open('exampleCVSkillSet.json')
+    data = json.load(f)
+    f.close()
+    for (k, v) in data.items():
+        for word in wordList:
+            if word in str(v):
+                score += 50
+
+    #todo: export as csv
+    return "Your SkillSet-Score is: " + str(score)
+
+
 if __name__ == '__main__':
     app.run()
+
