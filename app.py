@@ -5,11 +5,13 @@ from werkzeug.utils import secure_filename
 from biasChecker import checkData, generateData
 import json
 
+
 app = Flask(__name__)
  #test application
 @app.route('/')
 def hello_world():
     return render_template('index.html')
+
 
 #calculate Bias Score
 @app.route('/uploader', methods=['GET', 'POST'])
@@ -23,6 +25,7 @@ def file_uploader():
         score = checkData(df)
 
         return 'The Data Bias Score of you file is at: ' + str(score)
+
 
 #anonymyse and synthetisize CV to create a sample of male and female version
 @app.route('/CVuploader', methods=['GET', 'POST'])
@@ -72,9 +75,15 @@ def upload_file():
     return render_template('upload.html')
 
 
+@app.route('/bias')
+def bias():
+    return render_template('bias.html')
+
+
 @app.route('/augmentation')
 def augmentation():
     return render_template('augmentation.html')
+
 
 #use GAN for data augmentation of unbalanced data
 @app.route('/gan')
@@ -88,13 +97,11 @@ def gan():
         #generatedData = df = pd.read_csv("unbalanced_data_sex_augmented.csv", delimiter=",", encoding="utf-8")
     return send_file("./exampleData/unbiased/unbalanced_data_sex_augmented.csv", mimetype="text/csv", attachment_filename="unbalanced_data_sex_augmented.csv", as_attachment=True)
 
+
 @app.route('/twin')
 def twin():
     return render_template('twin.html')
 
-@app.route('/bias')
-def bias():
-    return render_template('bias.html')
 
 @app.route('/downloadCV')
 def downloadCV():
@@ -107,6 +114,7 @@ def downloadCV():
     path = "./exampleCV/unbiased/exampleCV_unbiased.jpg"
     send_file(path, as_attachment=True)
     return send_file(path, as_attachment=True)
+
 
 #read in CSV for data augmentation via GAN
 @app.route('/augmentData')
@@ -121,6 +129,7 @@ def augment_data():
    </body>
 </html>"""
 
+
 #read in CV for anonymisazion and synthetisation
 @app.route('/uploadCV')
 def upload_CVfile():
@@ -134,6 +143,7 @@ def upload_CVfile():
    </body>
 </html>"""
 
+
 #enter skillSet to scan document
 @app.route('/getSkillSetScore')
 def skillSet():
@@ -146,6 +156,8 @@ def skillSet():
       </form>
    </body>
 </html>"""
+
+
 
 if __name__ == '__main__':
     app.run()
